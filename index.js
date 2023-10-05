@@ -23,7 +23,7 @@ app.get("/", function (req, res) {
 app.get("/api/:date", function (req, res) {
   const inputDate = req.params.date;
   const unixStamp = Math.floor(new Date(inputDate).getTime());
-  const utcStamp = new Date(inputDate).toString();
+  const utcStamp = new Date(inputDate).toUTCString();
   res.json({ unix: unixStamp, utc: utcStamp });
 });
 
