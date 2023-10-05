@@ -33,10 +33,10 @@ app.get("/api/:date", function (req, res, next) {
 
   if (isNaN(unixStamp)) {
     res.json({ error: 'Invalid Date'});
-  } else {
-    const utcStamp = new Date(unixStamp).toUTCString();                                                
-    res.json({ unix: unixStamp, utc: utcStamp });
   }
+
+  const utcStamp = new Date(unixStamp).toUTCString();                                                
+  res.json({ unix: unixStamp, utc: utcStamp });
 });
 
 
