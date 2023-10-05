@@ -21,11 +21,26 @@ app.get("/", function (req, res) {
 
 // your first API endpoint... 
 app.get("/api/:date", function (req, res) {
-  const inputDate = req.params.date;
-  const unixStamp = Math.floor(new Date(inputDate).getTime());
-  const utcStamp = new Date(inputDate).toUTCString();
+  const { date } = req.params;
+  const unixStamp = new Date(date) == 'Invalid Date' ? parseInt(date) : Math.floor(new Date(date).getTime());
+  const utcStamp = new Date(unixStamp).toUTCString();
+                                                          
   res.json({ unix: unixStamp, utc: utcStamp });
 });
+
+
+/*
+ *   const unixStamp = Math.floor(inputDate.getTime());
+ *   const utcStamp = inputDate.toUTCString();
+ * 
+ * {"unix":1451001600000,"utc":"Fri, 25 Dec 2015 00:00:00 GMT"}
+ * {"unix":"1451001600000","utc":"Invalid Date"}
+ * 
+ * 
+*/
+
+
+
 
 
 
